@@ -75,6 +75,7 @@ server {
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
 
 upstream {{ $host }} {
+    ip_hash;
 {{ range $container := $containers }}
 	{{ $addrLen := len $container.Addresses }}
 
